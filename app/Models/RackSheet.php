@@ -15,24 +15,33 @@ class RackSheet extends Model
         'spec_code',
         'created_by_user_id',
         'racking_completed_at',
-        'electrolysis_completed_at',
-        'finishing_arrived_at',
-        'completed_by_user_id',
-        'note',
+        'electrolysis_minutes',
+        'electrolysis_recorded_at',
+        'final_completed_at',
     ];
 
+    protected $casts = [
+        'work_date' => 'date',
+        'daily_slot_no' => 'integer',
+        'electrolysis_minutes' => 'integer',
+        'racking_completed_at' => 'datetime',
+        'electrolysis_recorded_at' => 'datetime',
+        'final_completed_at' => 'datetime',
+    ];
+
+    /**
+     * 指示書に含まれる行
+     */
     public function lines(): HasMany
     {
         return $this->hasMany(RackSheetLine::class);
     }
 
+    /**
+     * 指示書作成者
+     */
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_user_id');
-    }
-
-    public function completer(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'completed_by_user_id');
     }
 }

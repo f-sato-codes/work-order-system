@@ -7,6 +7,12 @@ use App\Models\RackSheet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+public function create()
+{
+    return view('rack_sheets.create');
+}
+
+
 class RackSheetController extends Controller
 {
     public function store(StoreRackSheetRequest $request)

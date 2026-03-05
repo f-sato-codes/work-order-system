@@ -15,7 +15,13 @@ class RackSheetLine extends Model
         'job_code',
         'planned_qty',
         'racked_qty',
-        'note',
+    ];
+
+    protected $casts = [
+        'rack_sheet_id' => 'integer',
+        'line_no' => 'integer',
+        'planned_qty' => 'integer',
+        'racked_qty' => 'integer',
     ];
 
     public function rackSheet(): BelongsTo
